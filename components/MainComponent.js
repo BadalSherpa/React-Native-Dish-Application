@@ -1,8 +1,6 @@
-import React, { useState } from "react";
-import Menu from "./MenuComponent";
-import { DISHES } from "../shared/dishes";
-import { StyleSheet, StatusBar, View, Text } from "react-native";
-import DishDetail from "./DishDetailComponent";
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import HomeNavigation from "./navigations/HomeNavigation";
 
 /**
  * @author   Badal Sherpa
@@ -10,30 +8,18 @@ import DishDetail from "./DishDetailComponent";
  **/
 
 const Main = (props) => {
-  const [dishes, setDishes] = useState(DISHES);
-  const [selectedDish, setSelectedDish] = useState(null);
-  const { container } = styles;
-
-  const onDishSelect = (dishId) => {
-    setSelectedDish(dishId);
-  };
-
   return (
-    <View style={container}>
-      <Text>
-        <Menu dishes={dishes} onPress={(dishId) => onDishSelect(dishId)} />
-      </Text>
-      <DishDetail dish={dishes.filter((item) => item.id === selectedDish)[0]} />
-    </View>
+    <NavigationContainer>
+      <HomeNavigation />
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: StatusBar.currentHeight,
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     justifyContent: "center",
+//     alignItems: "center",
+//     paddingTop: Platform.OS == "ios" ? 0 : StatusBar.currentHeight,
+//   },
+// });
 
 export default Main;

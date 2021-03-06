@@ -1,17 +1,22 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React, { useState } from "react";
 import { ListItem, Avatar } from "react-native-elements";
+import { DISHES } from "../shared/dishes";
 
 /**
  * @author Badal Sherpa aka Changba Master
  * @function Menu
  **/
 
-const Menu = (props) => {
+const Menu = ({ navigation }) => {
+  const [dishes, setDishes] = useState(DISHES);
   return (
     <>
-      {props.dishes.map((l, i) => (
-        <ListItem key={i} onPress={() => props.onPress(l.id)} bottomDivider>
+      {dishes.map((l, i) => (
+        <ListItem
+          key={i}
+          onPress={() => navigation.navigate("DishDetail", { dishId: l.id })} //passing dishId parameter
+          bottomDivider
+        >
           <Avatar rounded source={require("./images/uthappizza.png")} />
           <ListItem.Content>
             <ListItem.Title>{l.name}</ListItem.Title>

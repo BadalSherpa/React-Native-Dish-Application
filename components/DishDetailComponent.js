@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Image } from "react-native";
 import { Text } from "react-native";
 import { StyleSheet } from "react-native";
 import { Card } from "react-native-elements";
+import { DISHES } from "../shared/dishes";
 
 /**
  * @author Badal Sherpa aka Changba Master
@@ -10,15 +11,19 @@ import { Card } from "react-native-elements";
  **/
 
 const RenderDish = (props) => {
-  const dish = props.dish;
+  const [dishes, setDishes] = useState(DISHES);
+  const { dish } = props;
 
+  const clicked = dishes.filter(function (item) {
+    return item.id == dish;
+  });
   if (dish != null) {
-    return (
+    return clicked.map((item) => (
       <Card>
-        <Card.Title>{dish.name}</Card.Title>
+        <Card.Title>{item.name}</Card.Title>
         <View style={{ textAlign: "center" }}>
           <Image
-            style={{ width: 100, height: 100 }}
+            style={{ width: "100%" }}
             source={require("./images/uthappizza.png")}
           />
         </View>
@@ -28,17 +33,18 @@ const RenderDish = (props) => {
             margin: 10,
           }}
         >
-          {dish.description}
+          {item.description}
         </Text>
       </Card>
-    );
+    ));
   } else {
-    return null;
+    return <View></View>;
   }
 };
 
-const DishDetail = (props) => {
-  return <RenderDish dish={props.dish} />;
+const DishDetail = ({ route }) => {
+  const { dishId } = route.params;
+  return <RenderDish dish={dishId} />;
 };
 
 const styles = StyleSheet.create({
