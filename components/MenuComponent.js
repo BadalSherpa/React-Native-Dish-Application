@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { ListItem, Avatar } from "react-native-elements";
 
 /**
@@ -9,18 +9,17 @@ import { ListItem, Avatar } from "react-native-elements";
 
 const Menu = (props) => {
   return (
-    <View>
+    <>
       {props.dishes.map((l, i) => (
-        <ListItem key={i} bottomDivider>
+        <ListItem key={i} onPress={() => props.onPress(l.id)} bottomDivider>
           <Avatar rounded source={require("./images/uthappizza.png")} />
-          {console.log(l.image)}
           <ListItem.Content>
             <ListItem.Title>{l.name}</ListItem.Title>
             <ListItem.Subtitle>{l.description}</ListItem.Subtitle>
           </ListItem.Content>
         </ListItem>
       ))}
-    </View>
+    </>
   );
 };
 
