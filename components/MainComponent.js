@@ -14,12 +14,5 @@ const Main = (props) => {
     </NavigationContainer>
   );
 };
-// const styles = StyleSheet.create({
-//   container: {
-//     justifyContent: "center",
-//     alignItems: "center",
-//     paddingTop: Platform.OS == "ios" ? 0 : StatusBar.currentHeight,
-//   },
-// });
 
 export default Main;

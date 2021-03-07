@@ -14,7 +14,7 @@ const Menu = ({ navigation }) => {
       {dishes.map((l, i) => (
         <ListItem
           key={i}
-          onPress={() => navigation.navigate("DishDetail", { dishId: l.id })} //passing dishId parameter
+          onPress={() => navigation.navigate("Dish-Detail", { dishId: l.id })} //passing dishId parameter
           bottomDivider
         >
           <Avatar rounded source={require("./images/uthappizza.png")} />

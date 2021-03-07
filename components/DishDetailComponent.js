@@ -19,7 +19,7 @@ const RenderDish = (props) => {
   });
   if (dish != null) {
     return clicked.map((item) => (
-      <Card>
+      <Card key={item.id}>
         <Card.Title>{item.name}</Card.Title>
         <View style={{ textAlign: "center" }}>
           <Image
@@ -44,7 +44,11 @@ const RenderDish = (props) => {
 
 const DishDetail = ({ route }) => {
   const { dishId } = route.params;
-  return <RenderDish dish={dishId} />;
+  if (dishId != null) {
+    return <RenderDish dish={dishId} />;
+  } else {
+    return RenderDish;
+  }
 };
 
 const styles = StyleSheet.create({
